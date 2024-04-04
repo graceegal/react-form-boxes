@@ -3,9 +3,11 @@ import Box from "./Box";
 import NewBoxForm from "./NewBoxForm";
 import { v4 as uuid } from 'uuid';
 
-/**Place your state that contains all of the boxes here.
- * This component should render all of the Box components
- * along with the NewBoxForm component. */
+/** Manage list of boxes
+ *
+ * State:
+ * - boxes: [ { id, width, height, backgroundColor }, ... ]
+ */
 
 function BoxList() {
     const [boxes, setBoxes] = useState([]);
@@ -15,10 +17,9 @@ function BoxList() {
         let newBox = { ...box, id: uuid() };
         setBoxes(boxes => [...boxes, newBox]);
     }
-    // end
 
     /** remove box matching that id. */
-    function remove (id) {
+    function remove(id) {
         setBoxes(boxes => boxes.filter(box => box.id !== id));
     }
 
@@ -43,6 +44,7 @@ function BoxList() {
         <div className="BoxList">
             <NewBoxForm addBox={add} />
             {renderBoxes()}
+            <Box remove={remove} id={7} />
         </div>
     );
 }

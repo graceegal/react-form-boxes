@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import NewBoxForm from "./NewBoxForm";
 
-
-/*
-This component should display a div with a
-background color, width, and height based on
-the props passed to it.
-*/
-function Box({ remove, id, backgroundColor, width, height }) {
+/** Colored box presentation
+ *
+ * Props:
+ * - id (unique)
+ * - width
+ * - height
+ * - backgroundColor
+ * - remove (function to call)
+ *
+ * BoxList -> Box
+ */
+function Box({ remove, id, backgroundColor = "red", width = 40, height = 40 }) {
     /** Remove a box. */
     function handleRemove() {
-        remove (id);
+        remove(id);
     }
 
     // render box
@@ -23,7 +28,7 @@ function Box({ remove, id, backgroundColor, width, height }) {
                     backgroundColor: backgroundColor
                 }}>
             </div>
-            <button className="Box-remove-btn" onClick={handleRemove}></button>
+            <button className="Box-remove-btn" onClick={handleRemove}>X</button>
         </div>
     );
 }
