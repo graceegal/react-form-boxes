@@ -7,17 +7,23 @@ This component should display a div with a
 background color, width, and height based on
 the props passed to it.
 */
-function Box({ deleteBtn, addBox, backgroundColor, width, height }) {
+function Box({ remove, id, backgroundColor, width, height }) {
+    /** Remove a box. */
+    function handleRemove() {
+        remove (id);
+    }
+
     // render box
     return (
         <div className="Box-container">
-            <div className="Box-shape"
+            <div className="Box-box"
                 style={{
-                height: `${height}px`,
-                width: `${width}px`,
-                backgroundColor: backgroundColor}}>
+                    height: `${height}px`,
+                    width: `${width}px`,
+                    backgroundColor: backgroundColor
+                }}>
             </div>
-            <button className="Box-delete-btn" onClick={deleteBtn}></button>
+            <button className="Box-remove-btn" onClick={handleRemove}></button>
         </div>
     );
 }

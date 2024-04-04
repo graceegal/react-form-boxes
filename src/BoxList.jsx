@@ -10,24 +10,38 @@ import { v4 as uuid } from 'uuid';
 function BoxList() {
     const [boxes, setBoxes] = useState([]);
 
-    function renderBoxes() {
-        return (
-            <div>
-                { boxes.map(b => (<Box deleteBtn={deleteBtn} addBox={addBox(b)} />)) }
-            </div>
-        );
-    }
-
     /** Add new Box object to boxes list. */
-    function addBox(box) {
+    function add(box) {
         let newBox = { ...box, id: uuid() };
         setBoxes(boxes => [...boxes, newBox]);
     }
     // end
 
+    /** remove box matching that id. */
+    function remove (id) {
+        setBoxes(boxes => boxes.filter(box => box.id !== id));
+    }
+
+    function renderBoxes() {
+        return (
+            <div>
+                {boxes.map(({ id, width, height, backgroundColor }) => (
+                    <Box
+                        key={id}
+                        id={id}
+                        remove={remove}
+                        width={width}
+                        height={height}
+                        backgroundColor={backgroundColor}
+                    />
+                ))}
+            </div>
+        );
+    }
+
     return (
         <div className="BoxList">
-            <NewBoxForm addBox={addBox} />
+            <NewBoxForm addBox={add} />
             {renderBoxes()}
         </div>
     );
