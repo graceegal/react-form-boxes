@@ -26,12 +26,13 @@ function NewBoxForm({ addBox }) {
         }));
     }
 
-    // render from
+    // render form
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="new-box-form" onSubmit={handleSubmit}>
             <label htmlFor="width">Width</label>
             <input
                 type="number"
+                id="width"
                 name="width"
                 value={formData.width}
                 onChange={handleChange}
@@ -40,6 +41,7 @@ function NewBoxForm({ addBox }) {
             <label htmlFor="height">Height</label>
             <input
                 type="number"
+                id="height"
                 name="height"
                 value={formData.height}
                 onChange={handleChange}
@@ -48,8 +50,8 @@ function NewBoxForm({ addBox }) {
             <label htmlFor="background-color">Background Color</label>
             <input
                 type="text"
-                // TODO: possible change to backgroundColor needed
-                name="background-color"
+                id="background-color"
+                name="backgroundColor"
                 value={formData.backgroundColor}
                 onChange={handleChange}
             />
